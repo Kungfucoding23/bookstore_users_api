@@ -6,7 +6,7 @@ import (
 	"github.com/Kungfucoding23/bookstore_users_api/utils/errors"
 )
 
-//dto: definition
+//dto: data transfer object
 
 //User struct
 type User struct {
