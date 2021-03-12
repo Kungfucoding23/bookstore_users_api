@@ -2,6 +2,7 @@ package users
 
 import (
 	"net/http"
+	"strconv"
 
 	"github.com/Kungfucoding23/bookstore_users_api/domain/users"
 	"github.com/Kungfucoding23/bookstore_users_api/services"
@@ -30,7 +31,7 @@ func CreateUser(c *gin.Context) {
 	}
 	result, saveErr := services.CreateUser(user)
 	if saveErr != nil {
-		//handle user creation error
+		c.JSON(saveErr.Status, saveErr)
 		return
 	}
 	c.JSON(http.StatusCreated, result)
@@ -38,5 +39,16 @@ func CreateUser(c *gin.Context) {
 
 //GetUser get a user
 func GetUser(c *gin.Context) {
-	c.String(http.StatusNotImplemented, "implement me!")
+	userID, userErr := strconv.ParseInt(c.Param("user_id"), 10, 64)
+	if userErr != nil {
+		err := errors.NewBadRequestError("invalid user id")
+		c.JSON(err.Status, err)
+		return
+	}
+	user, getErr := services.GetUser(userID)
+	if getErr != nil {
+		c.JSON(getErr.Status, getErr)
+		return
+	}
+	c.JSON(http.StatusOK, user)
 }
