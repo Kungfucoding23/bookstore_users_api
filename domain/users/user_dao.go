@@ -20,7 +20,7 @@ const (
 )
 
 //Get user by id
-func (user User) Get() *errors.RestErr {
+func (user *User) Get() *errors.RestErr {
 	stmt, err := users_db.Client.Prepare(queryGetUser)
 	if err != nil {
 		return errors.NewInternalServerError(err.Error())
