@@ -1,6 +1,7 @@
 package mysql_utils
 
 import (
+	"fmt"
 	"strings"
 
 	"github.com/Kungfucoding23/bookstore_users_api/utils/errors"
@@ -22,7 +23,7 @@ func ParseError(err error) *errors.RestErr {
 	}
 	switch sqlError.Number {
 	case 1062:
-		return errors.NewBadRequestError("invalid data")
+		return errors.NewBadRequestError(fmt.Sprintf("invalid data: " + err.Error()))
 	}
 	return errors.NewInternalServerError("error processing request")
 }
