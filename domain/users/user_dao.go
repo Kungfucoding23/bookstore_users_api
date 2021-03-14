@@ -11,10 +11,9 @@ import (
 //this is the point where we interact with the database
 
 const (
-	errorNoRows      = "no rows in result set"
-	indexUniqueEmail = "email_UNIQUE"
-	queryInsertUser  = "INSERT INTO users(first_name, last_name, email, date_created) VALUES(?, ?, ?, ?);"
-	queryGetUser     = "SELECT id, first_name, last_name, email, date_created FROM users WHERE id=?;"
+	queryInsertUser = "INSERT INTO users(first_name, last_name, email, date_created) VALUES(?, ?, ?, ?);"
+	queryGetUser    = "SELECT id, first_name, last_name, email, date_created FROM users WHERE id=?;"
+	queryUpdateUser = "UPDATE users SET first_name=?, last_name=?, email=? WHERE id=?;"
 )
 
 //Get user by id
@@ -52,5 +51,19 @@ func (user *User) Save() *errors.RestErr {
 		return mysql_utils.ParseError(err)
 	}
 	user.ID = userID
+	return nil
+}
+
+func (user *User) Update() *errors.RestErr {
+	stmt, err := users_db.Client.Prepare(queryUpdateUser)
+	if err != nil {
+		return errors.NewInternalServerError(err.Error())
+	}
+	defer stmt.Close()
+
+	_, err = stmt.Exec(user.FirstName, user.LastName, user.Email, user.ID)
+	if err != nil {
+		return mysql_utils.ParseError(err)
+	}
 	return nil
 }
