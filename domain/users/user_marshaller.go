@@ -40,3 +40,5 @@ func (user *User) Marshall(isPublic bool) interface{} {
 	json.Unmarshal(userJson, &privateUser)
 	return privateUser
 }
+
+//https://blog.gopheracademy.com/advent-2016/advanced-encoding-decoding/
