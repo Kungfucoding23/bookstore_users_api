@@ -2,6 +2,7 @@ package services
 
 import (
 	"github.com/Kungfucoding23/bookstore_users_api/domain/users"
+	"github.com/Kungfucoding23/bookstore_users_api/utils/crypto_utils"
 	"github.com/Kungfucoding23/bookstore_users_api/utils/date"
 	"github.com/Kungfucoding23/bookstore_users_api/utils/errors"
 )
@@ -21,8 +22,8 @@ func CreateUser(user users.User) (*users.User, *errors.RestErr) {
 	}
 
 	user.Status = users.StatusActive
-
 	user.DateCreated = date.GetNowDatabaseFormat()
+	user.Password = crypto_utils.GetMd5(user.Password)
 
 	//attempt  to save the user in the database
 	if err := user.Save(); err != nil {
@@ -64,7 +65,7 @@ func DeleteUser(userID int64) *errors.RestErr {
 	return user.Delete()
 }
 
-func Search(status string) ([]users.User, *errors.RestErr) {
+func Search(status string) (users.Users, *errors.RestErr) {
 	dao := &users.User{}
 	return dao.FindByStatus(status)
 }
