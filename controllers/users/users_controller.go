@@ -21,17 +21,6 @@ func getUserID(userIDParam string) (int64, *errors.RestErr) {
 //CreateUser creates a user
 func Create(c *gin.Context) {
 	var user users.User
-	/* bytes, err := ioutil.ReadAll(c.Request.Body)
-	if err != nil {
-		//handle error
-		return
-	}
-	if err := json.Unmarshal(bytes, &user); err != nil {
-		//handle json error
-		return
-	}*/
-
-	//this lane replaces the ioutil and unmarshal json func
 	if err := c.ShouldBindJSON(&user); err != nil {
 		restErr := errors.NewBadRequestError("invalid json body")
 		c.JSON(restErr.Status, restErr)
@@ -107,4 +96,19 @@ func Search(c *gin.Context) {
 		return
 	}
 	c.JSON(http.StatusOK, users.Marshall(c.GetHeader("X-Public") == "true"))
+}
+
+func Login(c *gin.Context) {
+	var request users.LoginRequest
+	if err := c.ShouldBindJSON(&request); err != nil {
+		restErr := errors.NewBadRequestError("invalid json body")
+		c.JSON(restErr.Status, restErr)
+		return
+	}
+	user, err := services.UsersService.LoginUser(request)
+	if err != nil {
+		c.JSON(err.Status, err)
+		return
+	}
+	c.JSON(http.StatusOK, user)
 }
