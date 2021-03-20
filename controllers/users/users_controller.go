@@ -4,6 +4,7 @@ import (
 	"net/http"
 	"strconv"
 
+	"github.com/Kungfucoding23/bookstore_oauth-go/oauth"
 	"github.com/Kungfucoding23/bookstore_users_api/domain/users"
 	"github.com/Kungfucoding23/bookstore_users_api/services"
 	"github.com/Kungfucoding23/bookstore_users_api/utils/errors"
@@ -36,6 +37,10 @@ func Create(c *gin.Context) {
 
 //GetUser get a user
 func Get(c *gin.Context) {
+	if err := oauth.AuthenticateRequest(c.Request); err != nil {
+		c.JSON(err.Status, err)
+		return
+	}
 	userID, err := getUserID(c.Param("user_id"))
 	if err != nil {
 		c.JSON(err.Status, err)
@@ -46,7 +51,11 @@ func Get(c *gin.Context) {
 		c.JSON(getErr.Status, getErr)
 		return
 	}
-	c.JSON(http.StatusOK, user.Marshall(c.GetHeader("X-Public") == "true"))
+	if oauth.GetCallerID(c.Request) == user.ID {
+		c.JSON(http.StatusOK, user.Marshall(false))
+		return
+	}
+	c.JSON(http.StatusOK, user.Marshall(oauth.IsPublic(c.Request)))
 }
 
 func Update(c *gin.Context) {
