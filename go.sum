@@ -2,8 +2,12 @@ github.com/BurntSushi/toml v0.3.1 h1:WXkYYl6Yr3qBf1K79EBnL4mak0OimBfB0XUf9Vl28OQ
 github.com/BurntSushi/toml v0.3.1/go.mod h1:xHWCNGjB5oqiDr8zfno3MHue2Ht5sIBksp03qcyfWMU=
 github.com/Kungfucoding23/bookstore_oauth-go v0.0.0-20210320202715-8848ff1bf301 h1:XE+p5ytzRyxlIWe8p92TFtZ9ZgVwYVmBrw8vzwIJplw=
 github.com/Kungfucoding23/bookstore_oauth-go v0.0.0-20210320202715-8848ff1bf301/go.mod h1:2+zS5BR5Dm+CNDyPqo0/w4KaIywY+VpERjnbVHrj9mA=
+github.com/Kungfucoding23/bookstore_oauth-go v0.0.0-20210322142348-ea2137c2ee0e h1:p7Y09zrBMwlbVH41lpvx55JJskDnefa8h1Hr1PJ3iQs=
+github.com/Kungfucoding23/bookstore_oauth-go v0.0.0-20210322142348-ea2137c2ee0e/go.mod h1:s1TviTPRTogj01bvj9U/h/qk88SPu/8rWkNdjGUJqH0=
 github.com/Kungfucoding23/bookstore_utils-go v0.0.0-20210322122054-978964b7f7e7 h1:JqwVHjAQ+VqRGzgw+TS77t50CEtnq6yS7vaoNICsB/4=
 github.com/Kungfucoding23/bookstore_utils-go v0.0.0-20210322122054-978964b7f7e7/go.mod h1:j//3lqyrdcLWyNV+7aaEiw2BhGbgB0jYg+4qdSh7mvE=
+github.com/Kungfucoding23/bookstore_utils-go v0.0.0-20210322133803-ca1156c0472a h1:h0oby1kVP/LtdohOAnPcNMouvpjFWqp2xZdTLFLET2Y=
+github.com/Kungfucoding23/bookstore_utils-go v0.0.0-20210322133803-ca1156c0472a/go.mod h1:j//3lqyrdcLWyNV+7aaEiw2BhGbgB0jYg+4qdSh7mvE=
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c=
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=

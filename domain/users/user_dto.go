@@ -26,7 +26,7 @@ type User struct {
 type Users []User
 
 //this way the user knows how to validate himself
-func (user *User) Validate() *rest_errors.RestErr {
+func (user *User) Validate() rest_errors.RestErr {
 	user.FirstName = strings.TrimSpace(strings.ToLower(user.FirstName))
 	user.LastName = strings.TrimSpace(strings.ToLower(user.LastName))
 	user.Email = strings.TrimSpace(strings.ToLower(user.Email))
