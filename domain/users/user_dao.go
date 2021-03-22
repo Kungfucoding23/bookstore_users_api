@@ -24,7 +24,7 @@ const (
 )
 
 //Get user by id
-func (user *User) Get() *rest_errors.RestErr {
+func (user *User) Get() rest_errors.RestErr {
 	stmt, err := users_db.Client.Prepare(queryGetUser)
 	if err != nil {
 		logger.Error("error when trying to prepare get user statement", err)                      // this is the error I log into my system
@@ -41,7 +41,7 @@ func (user *User) Get() *rest_errors.RestErr {
 	return nil
 }
 
-func (user *User) FindByEmailAndPassword() *rest_errors.RestErr {
+func (user *User) FindByEmailAndPassword() rest_errors.RestErr {
 	stmt, err := users_db.Client.Prepare(queryFindByEmailAndPassword)
 	if err != nil {
 		logger.Error("error when trying to prepare find user by email and password statement", err) // this is the error I log into my system
@@ -62,7 +62,7 @@ func (user *User) FindByEmailAndPassword() *rest_errors.RestErr {
 }
 
 //Save user in the database
-func (user *User) Save() *rest_errors.RestErr {
+func (user *User) Save() rest_errors.RestErr {
 	stmt, err := users_db.Client.Prepare(queryInsertUser)
 	if err != nil {
 		logger.Error("error when trying to prepare save user statement", err)
@@ -84,7 +84,7 @@ func (user *User) Save() *rest_errors.RestErr {
 	return nil
 }
 
-func (user *User) Update() *rest_errors.RestErr {
+func (user *User) Update() rest_errors.RestErr {
 	stmt, err := users_db.Client.Prepare(queryUpdateUser)
 	if err != nil {
 		logger.Error("error when trying to prepare update user statement", err)
@@ -100,7 +100,7 @@ func (user *User) Update() *rest_errors.RestErr {
 	return nil
 }
 
-func (user *User) Delete() *rest_errors.RestErr {
+func (user *User) Delete() rest_errors.RestErr {
 	stmt, err := users_db.Client.Prepare(queryDeleteUser)
 	if err != nil {
 		logger.Error("error when trying to prepare delete user statement", err)
@@ -115,7 +115,7 @@ func (user *User) Delete() *rest_errors.RestErr {
 	return nil
 }
 
-func (user *User) FindByStatus(status string) ([]User, *rest_errors.RestErr) {
+func (user *User) FindByStatus(status string) ([]User, rest_errors.RestErr) {
 	stmt, err := users_db.Client.Prepare(queryFindByStatus)
 	if err != nil {
 		logger.Error("error when trying to prepare find users by status statement", err)
