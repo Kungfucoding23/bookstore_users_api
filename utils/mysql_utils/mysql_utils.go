@@ -14,7 +14,7 @@ const (
 	indexUniqueEmail = "email_UNIQUE"
 )
 
-func ParseError(err error) *rest_errors.RestErr {
+func ParseError(err error) rest_errors.RestErr {
 	sqlError, ok := err.(*mysql.MySQLError)
 	if !ok {
 		if strings.Contains(err.Error(), ErrorNoRows) {
